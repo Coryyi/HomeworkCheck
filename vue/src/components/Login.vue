@@ -7,7 +7,7 @@
         <form action="">
           <input class="acc" type="text" v-model="loginForm.username" placeholder="用户名" id="username">
           <input class="acc" type="password" v-model="loginForm.password" placeholder="密码" id="password">
-          <input class="submit" type="submit" @click="login"  value="Login">
+          <button class="submit" @click="login">Login</button>
         </form>
         <div class="fn">
           <a @click = toRegister>注册账号</a>
@@ -23,7 +23,7 @@ import router from "@/router";
 import axios from "axios";
 
 export default {
-  name: "LoginView",
+  name: "Login",
   data(){
     return{
       loginForm:{
@@ -38,18 +38,18 @@ export default {
       router.push("register")
     },
     toFind(){
-      router.push("find")
+      router.push("index")
     },
     login () {
-      console.log("username"+this.loginForm.username+"password:"+this.loginForm.password)
-      axios
+      this.$http
           .post('/login', {
             username: this.loginForm.username,
             password: this.loginForm.password
           })
           .then(successResponse => {
-            if (successResponse.data.code === 200) {
-              router.replace({path: '/index'})
+            if (successResponse.data.code) {
+              console.log(true)
+              router.replace("find")
             }
           })
           .catch(failResponse => {
