@@ -7,7 +7,7 @@
         <form action="">
           <input class="acc" type="text" v-model="loginForm.username" placeholder="用户名" id="username">
           <input class="acc" type="password" v-model="loginForm.password" placeholder="密码" id="password">
-          <button class="submit" @click="login">Login</button>
+          <button class="submit" type="button" @click="login">Login</button>
         </form>
         <div class="fn">
           <a @click = toRegister>注册账号</a>
@@ -49,7 +49,7 @@ export default {
           .then(successResponse => {
             if (successResponse.data.code) {
               console.log(true)
-              router.replace("find")
+              router.replace("index")
             }
           })
           .catch(failResponse => {
