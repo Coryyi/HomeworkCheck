@@ -7,7 +7,7 @@
         <form action="">
           <input class="acc" type="text" placeholder="用户名">
           <input class="acc" type="password" placeholder="密码">
-          <input class="acc" type="checkPassword" placeholder="请再次输入密码">
+          <input class="acc" type="password" placeholder="请再次输入密码">
           <input class="submit" type="submit" value="Register">
         </form>
         <div class="fn">

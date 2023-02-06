@@ -48,8 +48,10 @@ export default {
           })
           .then(successResponse => {
             if (successResponse.data.code) {
-              console.log(true)
               router.replace("index")
+
+            }else {
+              alert("用户名或密码错误")
             }
           })
           .catch(failResponse => {
