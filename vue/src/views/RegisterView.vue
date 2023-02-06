@@ -5,10 +5,10 @@
       <div class="right">
         <h4>注 册</h4>
         <form action="">
-          <input class="acc" type="text" placeholder="用户名">
-          <input class="acc" type="password" placeholder="密码">
-          <input class="acc" type="password" placeholder="请再次输入密码">
-          <input class="submit" type="submit" value="Register">
+          <input class="acc" v-model="registerFrom.username" type="text" placeholder="用户名">
+          <input class="acc" v-model="registerFrom.password" type="password" placeholder="密码">
+          <input class="acc" v-model="registerFrom.pwd" type="password" placeholder="请再次输入密码">
+          <input class="submit" type="button" @click="register" value="Register">
         </form>
         <div class="fn">
           <a @click = toLogin>已有账号</a>
@@ -24,12 +24,56 @@ import router from "@/router";
 
 export default {
   name: "RegisterView",
+  data(){
+    return{
+      registerFrom:{
+        username:"",
+        password:"",
+        pwd:""
+      },
+      responseResult:[]
+    }
+  },
   methods:{
     toLogin(){
       router.push("login")
     },
     toFind(){
       router.push("find")
+    },
+    register(){
+      if(this.registerFrom.username.length<5||this.registerFrom.username.length>20){
+        alert(this.registerFrom.username.length)
+        alert("用户名不能少于5字符或多余20字符")
+
+        return;
+      }
+      if(this.registerFrom.password.length <8||this.registerFrom.password.length>15){
+        alert("密码不能少于8位或多余15位")
+        return;
+      }
+      if(this.registerFrom.password !== this.registerFrom.pwd){
+        alert("两次密码不同")
+        return;
+      }
+
+
+
+      this.$axios
+          .post('/register', {
+            username: this.registerFrom.username,
+            password: this.registerFrom.password
+          })
+          .then(successResponse => {
+            if (successResponse.data.code===200) {
+              router.replace("login")
+
+            }else {
+              alert("注册失败")
+            }
+          })
+          .catch(failResponse => {
+          })
     }
   }
 }

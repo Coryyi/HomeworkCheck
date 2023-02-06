@@ -1,9 +1,20 @@
 package com.coryi.check.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name="user")
+@JsonIgnoreProperties({"handler","hibernateLazyInitializer"})
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private int id;
+
     private String username;
-    private String cover;
-    private String id;
+    /*private String cover;*/
     private String password;
 
     public String getUsername() {
@@ -14,11 +25,11 @@ public class User {
         this.username = name;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -30,13 +41,13 @@ public class User {
         this.password = password;
     }
 
-    public String getCover() {
+ /*   public String getCover() {
         return cover;
     }
 
     public void setCover(String cover) {
         this.cover = cover;
-    }
+    }*/
 
 
 }

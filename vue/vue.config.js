@@ -6,7 +6,7 @@ module.exports = defineConfig({
     proxy: {
       "/api": { // '/api/' 等同于 target 中的地址
         // 跨域的服务器地址
-        target: "http://127.0.0.1:8081",
+        target: "http://127.0.0.1:8083",
         // 是否允许跨域
         changeOrigin: true,
         pathRewrite: {

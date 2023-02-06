@@ -41,14 +41,14 @@ export default {
       router.push("index")
     },
     login () {
-      this.$http
+      this.$axios
           .post('/login', {
             username: this.loginForm.username,
             password: this.loginForm.password
           })
           .then(successResponse => {
-            if (successResponse.data.code) {
-              router.replace("index")
+            if (successResponse.data.code===200) {
+              router.push("index")
 
             }else {
               alert("用户名或密码错误")

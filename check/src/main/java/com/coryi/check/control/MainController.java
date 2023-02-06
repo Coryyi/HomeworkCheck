@@ -10,10 +10,4 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class MainController {
     @Autowired
     FileService fileService;
-
-    /*@GetMapping("./login")
-    @ResponseBody
-    public String testLogin(Module module){
-        return "login";
-    }*/
 }
